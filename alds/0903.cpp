@@ -34,7 +34,7 @@ Node * treeSuccessor(Node *x){
     return y;
 }
 
-Node * treeDelete(Node *z){
+void treeDelete(Node *z){
     Node *y;
     Node *x;
 
@@ -45,6 +45,10 @@ Node * treeDelete(Node *z){
         x = y->left;
     } else {
         x = y->right;
+    }
+
+    if(x!=NIL){
+        x->parent = y->parent;
     }
 
     if (y->parent == NIL){
@@ -97,14 +101,14 @@ void insert(int k){
 void inorder(Node *u){
     if(u==NIL) return;
     inorder(u->left);
-    printf(" %d ",u->key);
+    printf(" %d",u->key);
     inorder(u->right);
 }
 void preorder(Node *u){
     if(u==NIL) return;
-    printf(" %d "u->key);
-    preorder(" %d ",u->left);
-    preorder(" %d ",u->right);
+    printf(" %d",u->key);
+    preorder(u->left);
+    preorder(u->right);
 }
 
 int main(){
@@ -119,7 +123,7 @@ int main(){
         if (com[0] == 'f')
         {
             scanf("%d",&x);
-            Node *t = find(x);
+            Node *t = find(root, x);
             if(t!=NIL) printf("yes\n");
             else printf("no\n");
         } else if (com == "insert") {
@@ -130,6 +134,9 @@ int main(){
             printf("\n");
             preorder(root);
             printf("\n");
+        } else if (com == "delete"){
+            scanf("%d", &x);
+            treeDelete(find(root,x));
         }
     }
     return 0;

@@ -11,7 +11,7 @@ struct Node{
 
 Node *root, *NIL;
 
-Node * find(Node *u, int k){
+Node * find (Node *u, int k){
     while(u!=NIL && k!=u->key){
         if(k < u->key) u = u->left;
         else u = u->right;
@@ -52,14 +52,14 @@ void insert(int k){
 void inorder(Node *u){
     if(u==NIL) return;
     inorder(u->left);
-    printf(" %d ",u->key);
+    printf(" %d",u->key);
     inorder(u->right);
 }
 void preorder(Node *u){
     if(u==NIL) return;
-    printf(" %d "u->key);
-    preorder(" %d ",u->left);
-    preorder(" %d ",u->right);
+    printf(" %d",u->key);
+    preorder(u->left);
+    preorder(u->right);
 }
 
 int main(){
@@ -74,7 +74,7 @@ int main(){
         if (com[0] == 'f')
         {
             scanf("%d",&x);
-            Node *t = find(x);
+            Node *t = find(root, x);
             if(t!=NIL) printf("yes\n");
             else printf("no\n");
         } else if (com == "insert") {

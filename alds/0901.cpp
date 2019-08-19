@@ -44,14 +44,14 @@ void insert(int k){
 void inorder(Node *u){
     if(u==NIL) return;
     inorder(u->left);
-    printf(" %d ",u->key);
+    printf(" %d",u->key);
     inorder(u->right);
 }
 void preorder(Node *u){
     if(u==NIL) return;
-    printf(" %d "u->key);
-    preorder(" %d ",u->left);
-    preorder(" %d ",u->right);
+    printf(" %d",u->key);
+    preorder(u->left);
+    preorder(u->right);
 }
 
 int main(){
@@ -65,6 +65,7 @@ int main(){
 
         if (com == "insert") {
             scanf("%d", &x);
+
             insert(x);
         } else if (com == "print") {
             inorder(root);
